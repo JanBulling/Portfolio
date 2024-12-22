@@ -1,11 +1,161 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import { links, site, socials } from "@/contsts";
+import Layout from "../layouts/Layout.astro";
+import StackCard from "@/components/StackCard.astro";
+import StarBackground from "@/components/StarBackground.astro";
+import ColorChangeButtons from "@/components/ColorChangeButtons.astro";
+import Link from "@/ui/Link.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const stack = [
+  {
+    text: "Astro",
+    icon: "astro",
+    href: "https://astro.build",
+  },
+  {
+    text: "React",
+    icon: "javascript",
+    href: "https://www.javascript.com",
+  },
+  {
+    text: "Typescript",
+    icon: "typescript",
+    href: "https://www.typescriptlang.org",
+  },
+  {
+    text: "Tailwind",
+    icon: "tailwind",
+    href: "https://tailwindcss.com",
+  },
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout title='Jan Bulling' description={site.description}>
+  <StarBackground />
+
+  <!-- Dark Theme: Twinkling Stars / Metors -->
+  <!-- <div id='galaxy' class='fixed inset-0'>
+    <div class='hidden dark:block'>
+      <TwinklingStars />
+      <MeteorShower />
+    </div>
+  </div> -->
+
+  <!-- Hero -->
+  <section class='h-screen w-full relative'>
+    <div class='absolute inset-0 top-1/3 overflow-hidden'>
+      <div
+        class='absolute top-0 left-1/2 -translate-x-1/2 w-[250vw] min-h-[100vh] aspect-square rounded-full p-[1px] bg-gradient-to-b from-black/25 dark:from-white/75 from-0% to-transparent to-5%'
+      >
+        <div
+          class='w-full h-full bg-white dark:bg-black rounded-full p-[1px] overflow-hidden flex justify-center'
+        >
+          <div
+            class='w-full h-20 rounded-full bg-neutral-900/25 dark:bg-white/25 blur-3xl'
+          >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='absolute inset-0 top-1/4'>
+      <div class='h-full flex flex-col items-center justify-center'>
+        <img
+          src='/avatar.png'
+          alt=''
+          class='rounded-full w-[110px] sm:w-[140px] mb-8 sm:mb-0 border border-neutral-800 dark:border-neutral-200'
+        />
+        <div class='p-5 text-center'>
+          <p class='text-lg md:text-xl lg:text-2xl font-semibold opacity-75'>
+            Hello, I am ...
+          </p>
+          <h1
+            class='text-2xl md:text-3xl lg:text-4xl font-bold uppercase text-black dark:text-white'
+          >
+            Jan Bulling
+          </h1>
+          <p class='text-sm md:text-base lg:text-lg opacity-75'>
+            Software developer and Theoretical physicist
+          </p>
+        </div>
+        <ColorChangeButtons />
+      </div>
+    </div>
+  </section>
+
+  <div class='relative bg-white dark:bg-black'>
+    <!-- Short about Section -->
+    <section class='mx-auto max-w-screen-sm p-5 pb-16 space-y-5 w-full'>
+      <p>
+        I am a <b><i>software engineer</i></b>, <b><i>ui/ux designer</i></b>, <b
+          ><i>product planner</i></b
+        >, <b><i>mentor</i></b>, <b><i>student</i></b>, <b><i>minimalist</i></b
+        >, <b><i>eternal optimist</i></b>, <b><i>crypto enthusiast</i></b> and <b
+          ><i>sarcasm connoisseur</i></b
+        >.
+      </p>
+      <p>
+        I love to both build and break things. I am motivated by challenging
+        projects with self-guided research and dynamic problem solving. My true
+        passion is crafting creative front end designs with unique takes on
+        color, typography and motion.
+      </p>
+      <p>During my career</p>
+      <p>
+        I have built products ranging from marketing and ecommerce websites to
+        complex enterprise apps with focus on delivering fast, elegant code
+        along with delightful user interfaces.
+      </p>
+      <p>Now</p>
+      <p>
+        I currently work as a software engineer at StreamlineFS, where I do
+        product planning, design and development.
+      </p>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class='mx-auto max-w-screen-sm p-5 pb-16 space-y-5 w-full'>
+      <h2 class='font-semibold text-black dark:text-white'>I work with</h2>
+      <div class='flex flex-wrap items-center gap-2'>
+        {
+          stack.map((item) => (
+            <StackCard text={item.text} icon={item.icon} href={item.href} />
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Work experience -->
+    <section class='mx-auto max-w-screen-sm p-5 pb-16 space-y-5 w-full'>
+      <h2 class='font-semibold text-black dark:text-white'>Work experience</h2>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class='mx-auto max-w-screen-sm p-5 pb-16 space-y-5 w-full'>
+      <h2 class='font-semibold text-black dark:text-white'>
+        Some of my projects
+      </h2>
+    </section>
+
+    <!-- Connect section -->
+    <section class='mx-auto max-w-screen-sm p-5 pb-16 w-full'>
+      <h2 class='font-semibold text-black dark:text-white'>Let's connect!</h2>
+      <p>Reach out to me via email or on social media.</p>
+      <div class='grid grid-cols-4 gap-y-2 mt-4 auto-cols-min'>
+        {
+          socials.map((social) => (
+            <>
+              <div class='col-span-1'>
+                <span class='whitespace-nowrap truncate'>{social.name}</span>
+              </div>
+              <div class='col-span-3 truncate'>
+                <Link href={social.href} variant='underline' external>
+                  {social.text}
+                </Link>
+              </div>
+            </>
+          ))
+        }
+      </div>
+    </section>
+  </div>
 </Layout>
