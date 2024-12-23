@@ -1,0 +1,64 @@
+---
+import Button from "@/ui/Button.astro";
+
+const colors = {
+  zinc: { id: "zinc", name: "Zinc", hex: "#71717a" },
+  red: { id: "red", name: "Red", hex: "#dc2626" },
+  orange: { id: "orange", name: "Orange", hex: "#f97316" },
+  yellow: { id: "yellow", name: "Yellow", hex: "#facc15" },
+  green: { id: "green", name: "Green", hex: "#16a34a" },
+  blue: { id: "blue", name: "Blue", hex: "#0284c7" },
+  violet: { id: "violet", name: "Violet", hex: "#9333ea" },
+};
+
+type Color = { id: string; name: string; hex: string };
+type Colors = keyof typeof colors;
+
+interface Props {
+  color: Colors;
+}
+
+const { color } = Astro.props;
+
+const colorData = colors[color] as Color;
+---
+
+<Button
+  id={`color-btn-${colorData.id}`}
+  variant='outline'
+  size='sm'
+  class='color-button'
+>
+  <span class='rounded-full h-4 w-4' style={{ backgroundColor: colorData.hex }}
+  ></span>
+  {colorData.name}</Button
+>
+
+<script is:inline define:vars={{ colorData }}>
+  function changeColor() {
+    const root = document.querySelector(":root");
+    root.style.setProperty("--primary", colorData.hex);
+    localStorage.color = colorData.hex;
+
+    const allBtns = document.querySelectorAll("button.color-button");
+    [].forEach.call(allBtns, function (el) {
+      el.classList.remove("active-color-button");
+    });
+
+    const colorButton = document.getElementById(`color-btn-${colorData.id}`);
+    colorButton.classList.toggle("active-color-button");
+  }
+
+  function initializeButton() {
+    const colorButton = document.getElementById(`color-btn-${colorData.id}`);
+    colorButton?.addEventListener("click", changeColor);
+
+    const currentColor = localStorage.color;
+    if (currentColor === colorData.hex) {
+      colorButton.classList.toggle("active-color-button");
+    }
+  }
+
+  document.addEventListener("astro:after-swap", initializeButton);
+  initializeButton();
+</script>

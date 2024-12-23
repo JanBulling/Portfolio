@@ -22,3 +22,24 @@ import Drawer from "@/components/Drawer.astro";
     <!-- <Footer /> -->
   </body>
 </html>
+<script is:inline>
+  function preloadColor() {
+    const color = (() => {
+      const userColor = localStorage.color;
+
+      if (/^#(?:[0-9a-fA-F]{3}){1,2}$/.test(userColor)) {
+        return userColor;
+      } else {
+        return "#71717a";
+      }
+    })();
+
+    const root = document.querySelector(":root");
+    root.style.setProperty("--primary", color);
+
+    localStorage.color = color;
+  }
+
+  document.addEventListener("astro:after-swap", preloadColor);
+  preloadColor();
+</script>

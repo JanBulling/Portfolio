@@ -1,27 +1,13 @@
 ---
-import Button from "@/ui/Button.astro";
+import ColorButton from "./ColorButton.astro";
 ---
 
 <div class='flex flex-wrap gap-2 justify-center mt-5 mx-4'>
-  <Button variant='outline' size='sm'>
-    <span class='rounded-full h-4 w-4 bg-zinc-600'></span> Zinc</Button
-  >
-  <Button variant='outline' size='sm'>
-    <span class='rounded-full h-4 w-4 bg-red-600'></span> Red</Button
-  >
-  <Button variant='outline' size='sm'>
-    <span class='rounded-full h-4 w-4 bg-orange-600'></span> Orange</Button
-  >
-  <Button variant='outline' size='sm'>
-    <span class='rounded-full h-4 w-4 bg-yellow-500'></span> Yellow</Button
-  >
-  <Button variant='outline' size='sm'>
-    <span class='rounded-full h-4 w-4 bg-green-600'></span> Green</Button
-  >
-  <Button variant='outline' size='sm'>
-    <span class='rounded-full h-4 w-4 bg-blue-600'></span> Blue</Button
-  >
-  <Button variant='outline' size='sm'>
-    <span class='rounded-full h-4 w-4 bg-violet-600'></span> Violet</Button
-  >
+  <ColorButton color='zinc' />
+  <ColorButton color='red' />
+  <ColorButton color='orange' />
+  <ColorButton color='yellow' />
+  <ColorButton color='green' />
+  <ColorButton color='blue' />
+  <ColorButton color='violet' />
 </div>
