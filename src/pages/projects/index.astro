@@ -1,0 +1,30 @@
+---
+import ProjectCard from "@/components/ProjectCard.astro";
+import { projects } from "@/contsts";
+import Layout from "@/layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const projectsList = (await getCollection("projects")).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+<Layout title={projects.title} description={projects.description}>
+  <div class='pt-36 pb-16'>
+    <div class='max-w-screen-md mx-auto px-4'>
+      <h1 class='font-bold text-black dark:text-white text-xl'>
+        {projects.title}
+      </h1>
+
+      <ul class='space-y-4 mt-4'>
+        {
+          projectsList.map((project: any) => (
+            <li>
+              <ProjectCard entry={project} />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</Layout>

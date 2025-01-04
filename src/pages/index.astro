@@ -7,10 +7,17 @@ import ColorChangeButtons from "@/components/ColorChangeButtons.astro";
 import Link from "@/ui/Link.astro";
 import { getCollection } from "astro:content";
 import ProjectCard from "@/components/ProjectCard.astro";
+import WorkCard from "@/components/WorkCard.astro";
 
-const projects = await getCollection("projects");
-// .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-// .slice(0, 3);
+const projects = (await getCollection("projects"))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .filter((p) => p.data.featured)
+  .slice(0, 3);
+
+const works = (await getCollection("work"))
+  .sort((a, b) => b.data.startDate.getTime() - a.data.startDate.getTime())
+  .filter((p) => p.data.featured)
+  .slice(0, 3);
 
 const stack = [
   {
@@ -49,14 +56,6 @@ const stack = [
 <Layout title='Jan Bulling' description={site.description}>
   <StarBackground />
 
-  <!-- Dark Theme: Twinkling Stars / Metors -->
-  <!-- <div id='galaxy' class='fixed inset-0'>
-    <div class='hidden dark:block'>
-      <TwinklingStars />
-      <MeteorShower />
-    </div>
-  </div> -->
-
   <!-- Hero -->
   <section class='h-screen w-full relative'>
     <div class='absolute inset-0 top-1/3 overflow-hidden'>
@@ -92,7 +91,7 @@ const stack = [
             Jan Bulling
           </h1>
           <p class='text-sm md:text-base lg:text-lg opacity-75'>
-            Software developer and Theoretical physicist
+            Software developer and theoretical physicist
           </p>
         </div>
         <ColorChangeButtons />
@@ -102,31 +101,19 @@ const stack = [
 
   <div class='relative bg-white dark:bg-black'>
     <!-- Short about Section -->
-    <section class='mx-auto max-w-screen-sm p-5 pb-16 space-y-5 w-full'>
+    <section class='mx-auto max-w-screen-sm p-5 pb-16 space-y-3 w-full'>
       <p>
         I am a <b><i>software engineer</i></b>, <b><i>ui/ux designer</i></b>, <b
-          ><i>product planner</i></b
-        >, <b><i>mentor</i></b>, <b><i>student</i></b>, <b><i>minimalist</i></b
-        >, <b><i>eternal optimist</i></b>, <b><i>crypto enthusiast</i></b> and <b
-          ><i>sarcasm connoisseur</i></b
-        >.
+          ><i>master student of theoretical physics</i></b
+        > and <b><i>formation dancer</i></b>
       </p>
       <p>
-        I love to both build and break things. I am motivated by challenging
-        projects with self-guided research and dynamic problem solving. My true
-        passion is crafting creative front end designs with unique takes on
-        color, typography and motion.
+        I am currently studying physics in Ulm (Germany) and Uppsala (Sweden)
+        and plan to graduate in 2027.
       </p>
-      <p>During my career</p>
       <p>
-        I have built products ranging from marketing and ecommerce websites to
-        complex enterprise apps with focus on delivering fast, elegant code
-        along with delightful user interfaces.
-      </p>
-      <p>Now</p>
-      <p>
-        I currently work as a software engineer at StreamlineFS, where I do
-        product planning, design and development.
+        In my spare time I like to work on some side projects and especially
+        enjoy developing and designing web applications!
       </p>
     </section>
 
@@ -145,6 +132,15 @@ const stack = [
     <!-- Work experience -->
     <section class='mx-auto max-w-screen-sm p-5 pb-16 space-y-2 w-full'>
       <h2 class='font-semibold text-black dark:text-white'>Work experience</h2>
+      <ul class='space-y-4'>
+        {
+          works.map((work: any) => (
+            <li>
+              <WorkCard entry={work} />
+            </li>
+          ))
+        }
+      </ul>
     </section>
 
     <!-- Tech Stack Section -->
@@ -165,8 +161,10 @@ const stack = [
 
     <!-- Connect section -->
     <section class='mx-auto max-w-screen-sm p-5 pb-16 w-full'>
-      <h2 class='font-semibold text-black dark:text-white'>Let's connect!</h2>
-      <p>Reach out to me via email or on social media.</p>
+      <h2 class='font-semibold text-primary'>Let's connect!</h2>
+      <p class='text-primary opacity-75'>
+        Reach out to me via email or on social media.
+      </p>
       <div class='grid grid-cols-4 gap-y-2 mt-4 auto-cols-min'>
         {
           socials.map((social) => (

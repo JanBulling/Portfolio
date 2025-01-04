@@ -1,19 +1,34 @@
+import { file, glob } from "astro/loaders";
 import { defineCollection, z } from "astro:content";
 
 const work = defineCollection({
-  type: "content",
+  loader: file("./src/content/work.json"),
   schema: z.object({
     company: z.string(),
-    role: z.string(),
-    dateStart: z.coerce.date(),
-    dateEnd: z.union([z.coerce.date(), z.string()]),
+    featured: z.boolean().optional(),
+    image: z.string().optional(),
+    role: z.string().optional(),
+    summary: z.string().optional(),
+    startDate: z.coerce.date(),
+    endDate: z.union([z.coerce.date(), z.string()]).optional(),
+    subJobs: z
+      .array(
+        z.object({
+          role: z.string(),
+          summary: z.string().optional(),
+          startDate: z.coerce.date(),
+          endDate: z.union([z.coerce.date(), z.string()]).optional(),
+        })
+      )
+      .optional(),
   }),
 });
 
 const projects = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.md", base: "./src/content/projects" }),
   schema: z.object({
     title: z.string(),
+    featured: z.boolean().optional(),
     summary: z.string(),
     date: z.coerce.date(),
     tags: z.array(z.string()),
@@ -22,12 +37,4 @@ const projects = defineCollection({
   }),
 });
 
-const legal = defineCollection({
-  type: "content",
-  schema: z.object({
-    title: z.string(),
-    date: z.coerce.date(),
-  }),
-});
-
-export const collections = { work, projects, legal };
+export const collections = { work, projects };

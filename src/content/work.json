@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "featured": true,
+    "company": "Mercedes-Benz Tech Innovation",
+    "image": "/img/mercedes_benz_tech_innovation_logo.jpeg",
+    "role": "Internship - Software development",
+    "startDate": "Aug 2022",
+    "endDate": "Oct 2022",
+    "summary": "Entwicklung eines internen Finanz-Management Tools. Full Stack Web Entwicklung mit Angular und Kotlin. Verbesserung der Deploy- und CI/CD-Pipeline mittels GithubActions"
+  },
+  {
+    "id": 2,
+    "featured": true,
+    "company": "Ulm University",
+    "image": "/img/university_of_ulm_logo.jpeg",
+    "startDate": "Apr 2023",
+    "endDate": "Sep 2024",
+    "subJobs": [
+      {
+        "role": "Tutoring Comp. Sci.",
+        "startDate": "Apr 2023",
+        "endDate": "Sep 2023"
+      },
+      {
+        "role": "Scientific Assistant",
+        "startDate": "Oct 2023",
+        "endDate": "Mar 2024",
+        "summary": "at the Institute of Quantum Matter under Prof. J. Denschlag at Ulm University"
+      },
+      {
+        "role": "Tutoring Comp. Sci.",
+        "startDate": "Apr 2024",
+        "endDate": "Sep 2024"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "featured": true,
+    "company": "Green-Engage",
+    "image": "/img/green_entange_logo.jpeg",
+    "role": "Co-Founder and Lead Developer",
+    "startDate": "Aug 2023",
+    "summary": "Digital marketplace for sustainable projects according to the new CSR-guidelines in the EU"
+  },
+  {
+    "id": 4,
+    "featured": false,
+    "company": "Institute of Theoretical Physics",
+    "image": "/img/university_of_ulm_logo.jpeg",
+    "role": "Bachelor Thesis",
+    "startDate": "Sep 2024",
+    "endDate": "Dec 2024",
+    "summary": "The effects of Casimir Interactions in Experiments on Gravitationally-induced Entanglement"
+  }
+]

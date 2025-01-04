@@ -4,6 +4,16 @@ export const site = {
   author: "Jan Bulling",
 };
 
+export const projects = {
+  title: "Projects",
+  description: "Projects I lately worked on",
+};
+
+export const work = {
+  title: "Experiences",
+  description: "My work experiences",
+};
+
 // Links
 export const links = [
   {
